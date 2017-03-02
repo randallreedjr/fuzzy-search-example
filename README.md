@@ -1,24 +1,17 @@
-# README
+# Fuzzy Search Example
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This repository is a starting point for implementing a fuzzy search algorithm.
 
-Things you may want to cover:
+## Usage
 
-* Ruby version
+Fork and clone this repository, then run `bundle install` to install all gems. Then setup the database.
 
-* System dependencies
+```
+$ rake db:create & db:migrate & db:seed
+```
 
-* Configuration
+The seed will create 500 name records in the `people` database table.
 
-* Database creation
+## Prerequisites
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This project requires a PostgreSQL server to be running.
