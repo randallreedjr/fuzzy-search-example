@@ -4,7 +4,8 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.json
   def index
-    @people = Person.all
+    query = params[:q]
+    @people = query ? Person.search(query) : Person.all
   end
 
   # GET /people/1

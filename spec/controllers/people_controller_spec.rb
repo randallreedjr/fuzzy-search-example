@@ -36,10 +36,24 @@ RSpec.describe PeopleController, type: :controller do
   let(:valid_session) { {} }
 
   describe "GET #index" do
-    it "assigns all people as @people" do
-      person = Person.create! valid_attributes
-      get :index, params: {}, session: valid_session
-      expect(assigns(:people)).to eq([person])
+    let!(:person) { Person.create! valid_attributes }
+    let!(:other_person) { Person.create!(first_name: 'Joe', last_name: 'Blow') }
+
+    context "without a search parameter" do
+      it "assigns all people as @people" do
+        get :index, params: {}, session: valid_session
+
+        expect(assigns(:people)).to include(person)
+        expect(assigns(:people)).to include(other_person)
+      end
+    end
+
+    context "with a search parameter" do
+      it "assigns the matching people as @people" do
+        get :index, params: {q: 'John' }, session: valid_session
+
+        expect(assigns(:people)).to eq([person])
+      end
     end
   end
 
